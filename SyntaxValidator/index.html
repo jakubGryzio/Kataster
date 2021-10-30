@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>SyntaxValidator</title>
+  </head>
+  <body>
+    <header>
+      <section class="insert">
+        <p class="label">Wprowadź oznaczenie konturu:</p>
+        <form>
+          <div class="inputData">
+            <input type="text" id="contour" name="contour" /><br />
+            <input type="submit" id="submit" value="Sprawdź" />
+          </div>
+        </form>
+        <form>
+          <input type="file" id="upload" accept=".txt" hidden />
+          <label for="upload" class="upload"
+            ><i class="fa fa-cloud-download fa-lg"></i>Wskaż plik</label
+          >
+        </form>
+      </section>
+    </header>
+    <main>
+      <section class="general">
+        <div class="info hidden">Liczba błędów</div>
+      </section>
+      <section class="details">
+        <div class="errors">Errors</div>
+        <div class="syntaxErrors">Syntax</div>
+        <div class="specialErrors">Ofu Ozu</div>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
