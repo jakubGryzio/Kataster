@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="static/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>SyntaxValidator</title>
+  </head>
+  <body>
+    <header>
+        {% if message %}
+            <div class="message">
+                <button class="cancel">&times;</button>
+                <p class="messageInfo"> {{ message }} </p>
+            </div>
+        {% endif %}
+      <section class="insert">
+        <p class="label">Wprowadź oznaczenie konturu:</p>
+        <form action="{{ url_for("check") }}" method="POST">
+          <div class="inputData">
+            <input type="text" id="contour" name="contour" autocomplete="off"/><br />
+            <input type="submit" id="submit" value="Sprawdź" />
+          </div>
+        </form>
+        <form action="{{ url_for("upload_file") }}" method="POST" enctype=multipart/form-data>
+          <input type="file" id="upload" name='file' onchange="this.form.submit()" accept=".txt" hidden />
+          <label for="upload" class="upload"
+            ><i class="fa fa-cloud-download fa-lg"></i>Wskaż plik</label>
+        </form>
+      </section>
+    </header>
+    <main>
+      <section class="general">
+          {% if countError and allCount %}
+              <div class="info hidden"><b>Liczba błędów:</b> {{ countError }} / {{ allCount }}</div>
+          {% endif %}
+      </section>
+      <section class="details">
+        <div class="contourErrors">
+          <p class="labelError">Błędne kontury</p>
+          <div class="errors">{% if contour %} {{ contour }} {% endif %}</div>
+        </div>
+        <div class="syntaxErrors">
+          <p class="labelError">Błędy składniowe</p>
+          <div class="errors">{% if syntaxError %} {{ syntaxError }} {% endif %}</div>
+        </div>
+        <div class="specialErrors">
+          <p class="labelError">Błędy pojęciowe</p>
+          <div class="errors">{% if modelError %} {{ modelError }} {% endif %}</div>
+        </div>
+      </section>
+    </main>
+    <script src="static/script.js"></script>
+  </body>
+</html>
